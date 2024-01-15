@@ -36,10 +36,14 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: ls /home/runner/work/practice-ci/practice-ci && pnpm install
-          
-        
-
+        run: |
+          if [ -e pnpm-lock.yaml ]; then
+          pnpm install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
 
   lint:
     needs: [cache]
@@ -54,7 +58,7 @@ jobs:
         with:
           cache: pnpm
           node-version: 20
-      - run: pnpm install
+      - run: pnpm install 
       - run: pnpm run eslint
 
   build:
