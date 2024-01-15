@@ -36,22 +36,24 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: ls /home/runner/work/practice-ci/practice-ci && pnpm install
+          
         
 
 
   lint:
+    needs: [cache]
     name: Linter
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          cache: pnpm
-          node-version: 20
       - uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
+      - uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          node-version: 20
       - run: pnpm install
       - run: pnpm run eslint
 
