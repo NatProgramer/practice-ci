@@ -37,4 +37,3 @@ module.exports = {
     '@typescript-eslint/method-signature-style': 'off'
   }
 }
-  
