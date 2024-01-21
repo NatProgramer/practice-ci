@@ -22,9 +22,11 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-      - name: Install dependencies
+      - working-directory: /home/runner/work/practice-ci
+        name: Install dependencies
         run: pnpm install
-      - name: Run linter
+      - working-directory: /home/runner/work/practice-ci
+        name: Run linter
         run: pnpm run eslint
 
   build:
@@ -40,7 +42,9 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-      - name: installing dependences
+      - working-directory: /home/runner/work/practice-ci
+        name: installing dependences
         run: pnpm install
-      - name: build project
+      - working-directory: /home/runner/work/practice-ci
+        name: build project
         run: pnpm run build
