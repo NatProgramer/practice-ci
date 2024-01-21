@@ -32,11 +32,11 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          cache: pnpm
           node-version: 20
       - uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
       - run: pnpm install
+        working-directory: ../pnpm-lock.yaml
       - run: pnpm run build
