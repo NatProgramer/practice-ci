@@ -22,11 +22,10 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-      - working-directory: /home/runner/work/practice-ci
-        name: Install dependencies
+          cache-dependency-path: "./pnpm-lock.yaml"
+      - name: Install dependencies
         run: pnpm install
-      - working-directory: /home/runner/work/practice-ci
-        name: Run linter
+      - name: Run linter
         run: pnpm run eslint
 
   build:
@@ -42,9 +41,8 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-      - working-directory: /home/runner/work/practice-ci
-        name: installing dependences
+          cache-dependency-path: "./pnpm-lock.yaml"
+      - name: installing dependences
         run: pnpm install
-      - working-directory: /home/runner/work/practice-ci
-        name: build project
+      - name: build project
         run: pnpm run build
